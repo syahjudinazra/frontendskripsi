@@ -1,0 +1,68 @@
+
+<template>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4>Product Page
+                <RouterLink to="/product/create" class="btn btn-primary float-end">Add New Product</RouterLink>
+            </h4>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama</th>
+                        <th>Serial Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody v-if="this.product.length > 0">
+                    <tr v-for="(product, index) in this.product" :key="index">
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.nama }}</td>
+                        <td>{{ product.serialnumber }}</td>
+                        <td>
+                            <RouterLink to="/" class="btn btn-warning">Edit</RouterLink>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody v-else>
+                    <tr>
+                        <td colspan="3">Loading.....</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>    
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    name: 'product',
+    data(){
+        return {
+            product: []
+        }
+    },
+    mounted() {
+        
+        this.getProduct();
+        // console.log('bismillah bisa')
+    },
+    methods: {
+        getProduct(){
+            axios.get('http://127.0.0.1:8000/api/product').then(res => {
+                this.product = res.data.product
+                // console.log(res)
+            });
+        }
+    },
+}
+
+</script>
