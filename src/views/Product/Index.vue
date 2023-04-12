@@ -18,7 +18,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody v-if="this.product.length > 0">
+                <tbody v-if="this.product.length > 0 ">
                     <tr v-for="(product, index) in this.product" :key="index">
                         <td>{{ product.id }}</td>
                         <td>{{ product.nama }}</td>
@@ -53,13 +53,15 @@ export default {
     mounted() {
         
         this.getProduct();
-        // console.log('bismillah bisa')
+        // console.log('test log')
     },
     methods: {
         getProduct(){
-            axios.get('http://127.0.0.1:8000/api/product').then(res => {
+
+            axios.get('http://localhost:8000/api/product')
+            .then(res => {
                 this.product = res.data.product
-                // console.log(res)
+                // console.log(this.data)
             });
         }
     },
