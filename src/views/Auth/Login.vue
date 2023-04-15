@@ -1,7 +1,4 @@
 <template>
-  <h1>
-    home yang jadi login
-  </h1>
     <form @submit.prevent="submitForm">
       <div>
         <label for="email">Email:</label>
@@ -33,7 +30,7 @@
             password: this.password,
           });
           console.log(response.data);
-          window.location = "/product"
+          window.location = "/"
         } catch (error) {
           console.log(error.response.data);
           // display error message to user
