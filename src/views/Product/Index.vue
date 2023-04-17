@@ -13,19 +13,23 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nama</th>
                         <th>Serial Number</th>
+                        <th>Nama Device</th>
+                        <th>RAM</th>
+                        <th>Android</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody v-if="this.product.length > 0 ">
                     <tr v-for="(product, index) in this.product" :key="index">
                         <td>{{ product.id }}</td>
-                        <td>{{ product.nama }}</td>
                         <td>{{ product.serialnumber }}</td>
+                        <td>{{ product.nama }}</td>
+                        <td>{{ product.ram }}</td>
+                        <td>{{ product.android }}</td>
                         <td>
                             <RouterLink to="/" class="btn btn-warning">Edit</RouterLink>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
                         </td>
                     </tr>
                 </tbody>

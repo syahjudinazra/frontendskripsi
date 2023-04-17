@@ -13,12 +13,20 @@
                 </ul>
 
                 <div class="mb-3">
+                    <label for="serialnumber" class="form-label">Serial Number</label>
+                    <input type="text" v-model="model.product.serialnumber" class="form-control" id="serialnumber" name="serialnumber">
+                </div>
+                <div class="mb-3">
                     <label for="device" class="form-label">Device</label>
                     <input type="text" v-model="model.product.nama" class="form-control" id="device" name="device">
                 </div>
                 <div class="mb-3">
-                    <label for="serialnumber" class="form-label">Serial Number</label>
-                    <input type="text" v-model="model.product.serialnumber" class="form-control" id="serialnumber" name="serialnumber">
+                    <label for="ram" class="form-label">RAM</label>
+                    <input type="text" v-model="model.product.ram" class="form-control" id="ram" name="ram">
+                </div>
+                <div class="mb-3">
+                    <label for="android" class="form-label">Android</label>
+                    <input type="text" v-model="model.product.android" class="form-control" id="android" name="android">
                 </div>
 
                 <button type="button" @click="saveProduct" class="btn btn-primary">Submit</button>
@@ -37,8 +45,10 @@ export default {
             errorList: '',
             model: {
                 product: {
+                    serialnumber: '',
                     nama: '',
-                    serialnumber: ''
+                    ram: '',
+                    android: ''
                 }
             }
         }
@@ -53,8 +63,10 @@ export default {
                 alert(res.data.message);
 
                 this.model.product = {
+                    serialnumber: '',
                     nama: '',
-                    serialnumber: ''
+                    ram: '',
+                    android: ''
                 }
             })
             .catch(function(error){
