@@ -68,11 +68,12 @@ export default {
                     ram: '',
                     android: ''
                 }
+                this.errorList = '';
             })
             .catch(function(error){
                 if (error.response) {
                     if(error.response.status == 422) {
-                        mythis.errorList = error.response.data.errors;
+                        mythis.errorList = error.response.data.error;
                     }
                 // console.log(error.response.data);
                 // console.log(error.response.status);
