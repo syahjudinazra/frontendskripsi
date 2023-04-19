@@ -28,7 +28,7 @@
                         <td>{{ product.ram }}</td>
                         <td>{{ product.android }}</td>
                         <td>
-                            <RouterLink to="/" class="btn btn-warning">Edit</RouterLink>
+                            <RouterLink :to="{ path: '/product/'+product.id+'/edit' }" class="btn btn-warning">Edit</RouterLink>
                             <button type="button" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
                         </td>
                     </tr>
