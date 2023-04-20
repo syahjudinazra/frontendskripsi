@@ -37,12 +37,12 @@ const router = createRouter({
     },
     {
       path: '/product/create',
-      name: 'productsCreate',
+      name: 'productCreate',
       component: ProductCreate
     },
     {
       path: '/product/:id/edit',
-      name: 'productsEdit',
+      name: 'productEdit',
       component: ProductEdit
     },
   ]

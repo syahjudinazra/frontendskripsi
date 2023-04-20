@@ -29,7 +29,7 @@
                     <input type="text" v-model="model.product.android" class="form-control" id="android" name="android">
                 </div>
 
-                <button type="button" @click="saveProduct" class="btn btn-primary">Submit</button>
+                <button type="button" @click="updateProduct" class="btn btn-primary">Update</button>
             </div>
         </div>
     </div>
@@ -42,6 +42,7 @@ export default {
     name: 'productEdit',
     data(){
         return {
+            productId: '',
             errorList: '',
             model: {
                 product: {
@@ -53,39 +54,46 @@ export default {
             }
         }
     },
+
     mounted() {
         // console.log(this.$route.params.id);
+        this.productId = this.$route.params.id;
         this.getProductData(this.$route.params.id);
     },
+
     methods: {
 
         getProductData(productId) {
             axios.get('http://127.0.0.1:8000/api/product/${productId}/edit')
-            .then(res => {
-                console.log(res);
-            });
+            .then(response => {
+                console.log(response);
+            })
+            .catch(function(error){
+                if (error.response) {
+                    if(error.response.status == 404) {
+                        alert(error.response.data.message);
+                    }
+                }
+            })
         },
 
-        saveProduct() {
+        updateProduct() {
 
             var mythis = this;
-            axios.post('http://localhost:8000/api/product', this.model.product)
+            axios.put('http://127.0.0.1:8000/api/product/${this.productId}/edit', this.model.product)
             .then(res => {
                 console.log(res.data)
                 alert(res.data.message);
 
-                this.model.product = {
-                    serialnumber: '',
-                    nama: '',
-                    ram: '',
-                    android: ''
-                }
                 this.errorList = '';
             })
             .catch(function(error){
                 if (error.response) {
                     if(error.response.status == 422) {
                         mythis.errorList = error.response.data.error;
+                    }
+                    if(error.response.status == 404) {
+                        alert(error.response.data.message);
                     }
                 // console.log(error.response.data);
                 // console.log(error.response.status);
